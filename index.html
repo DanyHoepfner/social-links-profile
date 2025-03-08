@@ -42,8 +42,9 @@
         box-sizing: border-box;
         font-family: "Inter", "sans-serif";
         color: white;
+        line-height: 150%;
       }
-      /* STYLE CONTENT */
+      /* STYLE CONTENT (MOBILE FIRST APPROACH) */
       body {
         background-color: var(--Grey-900);
         height: 100vh;
@@ -54,11 +55,19 @@
 
       main {
         background-color: var(--Grey-800);
-        width: 384px;
+        width: 327px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        padding: var(--space-300);
+        gap: var(--space-300);
+        text-align: center;
+      }
+      .author {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
 
       .social-links {
@@ -66,6 +75,56 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: var(--space-200);
+        width: 100%;
+      }
+      img {
+        width: 88px;
+        border-radius: 44px;
+      }
+      .social-links a {
+        background-color: var(--Grey-700);
+        text-decoration: none;
+        border-radius: 8px;
+        width: 100%;
+        height: 45px;
+        padding: 12px 0px;
+        transition: background-color 800ms cubic-bezier(0.05, 0.75, 0.55, 0.71);
+      }
+
+      /* TYPOGRAPHY */
+      .text-preset-1 {
+        font-size: 24px;
+      }
+      .text-preset-2 {
+        font-size: 14px;
+      }
+      .bold {
+        font-weight: 600;
+      }
+      .regular {
+        font-weight: 300;
+      }
+      .green {
+        color: var(--Green);
+      }
+
+      /* HOVERING AND FOCUS STATES FOR LINKS*/
+      .social-links a:hover {
+        color: var(--Grey-900);
+        background-color: var(--Green);
+      }
+      .social-links a:focus {
+        color: var(--Grey-900);
+        background-color: var(--Green);
+      }
+
+      /* MEDIA QUERIES  */
+
+      @media (min-width: 768px) {
+        main {
+          width: 384px;
+        }
       }
     </style>
   </head>
@@ -76,17 +135,57 @@
         alt="Picture of the author"
       />
       <div class="author">
-        <h1>Jessica Randall</h1>
-        <p>London, United Kingdom</p>
+        <h1 class="text-preset-1 bold">Jessica Randall</h1>
+        <p class="text-preset-2 bold green">London, United Kingdom</p>
       </div>
-      <p>"Front-end developer and avid reader."</p>
-      <section class="social-links">
-        <a href="#">Github</a>
-        <a href="#">Frontend Mentor</a>
-        <a href="#">LinkedIn</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
+      <p class="text-preset-2 regular">
+        "Front-end developer and avid reader."
+      </p>
+      <section class="social-links text-preset-2 bold">
+        <a
+          id="github"
+          href="https://github.com"
+          aria-label="Visit GitHub profile"
+          target="_blank"
+          >Github</a
+        >
+        <a id="frontendmentor" href="#">Frontend Mentor</a>
+        <a id="linkedin" href="#">LinkedIn</a>
+        <a id="twitter" href="#">Twitter</a>
+        <a id="instagram" href="#">Instagram</a>
       </section>
     </main>
+
+    <script>
+      // change focus state when typing arrow up
+      const link1 = document.getElementById("github");
+      const link2 = document.getElementById("frontendmentor");
+      const link3 = document.getElementById("linkedin");
+      const link4 = document.getElementById("twitter");
+      const link5 = document.getElementById("instagram");
+      const links = [link1, link2, link3, link4, link5];
+      let focusIndex = -1;
+      document.addEventListener("keydown", function (event) {
+        const key = event.keyCode;
+
+        // key arrow down pressed
+        if (key === 40) {
+          focusIndex++;
+          if (focusIndex > links.length - 1) {
+            focusIndex = links.length - 1;
+          }
+          links[focusIndex].focus();
+        }
+        // key arrow up pressed
+        if (key === 38) {
+          focusIndex--;
+          if (focusIndex <= -1) {
+            focusIndex = 0;
+          }
+
+          links[focusIndex].focus();
+        }
+      });
+    </script>
   </body>
 </html>
