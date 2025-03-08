@@ -40,7 +40,7 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: "Inter", "sans-serif";
+        font-family: "Inter", sans-serif;
         color: white;
         line-height: 150%;
       }
@@ -99,21 +99,18 @@
       .text-preset-2 {
         font-size: 14px;
       }
-      .bold {
+      .font-bold {
         font-weight: 600;
       }
-      .regular {
+      .font-regular {
         font-weight: 300;
       }
-      .green {
+      .font-green {
         color: var(--Green);
       }
 
       /* HOVERING AND FOCUS STATES FOR LINKS*/
-      .social-links a:hover {
-        color: var(--Grey-900);
-        background-color: var(--Green);
-      }
+      .social-links a:hover,
       .social-links a:focus {
         color: var(--Grey-900);
         background-color: var(--Green);
@@ -135,37 +132,54 @@
         alt="Picture of the author"
       />
       <div class="author">
-        <h1 class="text-preset-1 bold">Jessica Randall</h1>
-        <p class="text-preset-2 bold green">London, United Kingdom</p>
+        <h1 class="text-preset-1 font-bold">Jessica Randall</h1>
+        <p class="text-preset-2 font-bold font-green">London, United Kingdom</p>
       </div>
-      <p class="text-preset-2 regular">
+      <p class="text-preset-2 font-regular">
         "Front-end developer and avid reader."
       </p>
-      <section class="social-links text-preset-2 bold">
+      <section class="social-links text-preset-2 font-bold">
         <a
-          id="github"
           href="https://github.com"
           aria-label="Visit GitHub profile"
           target="_blank"
           >Github</a
         >
-        <a id="frontendmentor" href="#">Frontend Mentor</a>
-        <a id="linkedin" href="#">LinkedIn</a>
-        <a id="twitter" href="#">Twitter</a>
-        <a id="instagram" href="#">Instagram</a>
+        <a
+          href="https://frontendmentor.io"
+          aria-label="Visit Frontend Mentor"
+          target="_blank"
+          >Frontend Mentor</a
+        >
+        <a
+          href="https://linkedin.com/"
+          aria-label="Visit LinkedIn profile"
+          target="_blank"
+          >LinkedIn</a
+        >
+        <a href="https://x.com" aria-label="Visit X profile" target="_blank"
+          >X</a
+        >
+        <a
+          href="https://instagram.com"
+          aria-label="Visit Instagram profile"
+          target="_blank"
+          >Instagram</a
+        >
       </section>
     </main>
 
     <script>
-      // change focus state when typing arrow up
-      const link1 = document.getElementById("github");
-      const link2 = document.getElementById("frontendmentor");
-      const link3 = document.getElementById("linkedin");
-      const link4 = document.getElementById("twitter");
-      const link5 = document.getElementById("instagram");
-      const links = [link1, link2, link3, link4, link5];
+      /* THIS SCRIPT ALLOWS THE USER TO CHANGE THE FOCUS STATE OF THE LINKS */
+
+      // define an array to hold all links
+      const links = document.querySelectorAll(".social-links a");
+      // assign a variable that represents the active index
       let focusIndex = -1;
+
+      // add event listener to listen for key events
       document.addEventListener("keydown", function (event) {
+        // save which key was pressed
         const key = event.keyCode;
 
         // key arrow down pressed
@@ -182,7 +196,6 @@
           if (focusIndex <= -1) {
             focusIndex = 0;
           }
-
           links[focusIndex].focus();
         }
       });
